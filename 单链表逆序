@@ -1,0 +1,40 @@
+/*
+  带头结点的单链表逆序
+
+*/
+List Reverse( List L )
+{
+    List Old_head, New_head, Temp;          //可以去掉变量New_head由L->Next代替
+    
+    Old_head = L->Next;
+    New_head = NULL;
+
+    while ( Old_head )  {
+        Temp = Old_head->Next;
+        Old_head -> Next = New_head;
+        New_head = Old_head;  
+        Old_head = Temp; 
+    }
+    L->Next = New_head;                    //可去
+    return L;
+}
+
+/*
+  不带头结点的单链表逆序
+
+*/
+
+   List Reverse( List L)  
+    {  
+        List p,q;  
+        p=L;  
+            L=NULL;  
+        while(p)  
+        {  
+            q=p;  
+            p=p->Next;  
+            q->Next=L;  
+            L=q;  
+        }  
+        return L;  
+    }  
