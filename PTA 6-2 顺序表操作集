@@ -1,0 +1,8 @@
+List MakeEmpty(){
+	List L;
+	L=(List*)malloc(sizeof(List));      //建立顺序空表
+	L->Last=-1;
+	return L;
+} 
+
+printf("POSITION %d EMPTY",P);   //该题删除中需要注意的一句输出
