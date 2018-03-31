@@ -38,3 +38,16 @@ List Reverse( List L )
         }  
         return L;  
     }  
+    
+    struct ListNode *reverse( struct ListNode *head ){
+	struct ListNode  *p,*q,*t;
+	p=head;
+	q=NULL;
+	while(p!=NULL){
+		t=p->next;
+		p->next=q;
+		q=p;
+		p=t;
+	}
+	return q;
+}
