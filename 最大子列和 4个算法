@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
 			  else if( ThisSum < 0 ) /* 如果当前子列和为负 */
                       {ThisSum = 0; /* 则不可能使后面的部分和增大，抛弃之 */
                         if(MaxSum>0)    /*前面已存在一个目前最大子列*/
-						 t=i+1;        /*t表示新子列首位置*/
+						 t=i+1;        /*t表示新子列首位置，i++是错的，i+1就对了？？？？*/
 					  }
         }
 		 printf("%d",MaxSum );
