@@ -101,3 +101,50 @@
     { /* 保持与前2种算法相同的函数接口 */
         return DivideAndConquer( List, 0, N-1 );
     }
+
+
+#include <stdio.h>
+
+求最大子列和，并记录首次出现的最大子列的首末位置的值
+
+int main(int argc, char *argv[])
+{
+	int i,K,A[100000],z;
+	int ThisSum, MaxSum;
+	int head,rear,t;
+    t=head=rear=ThisSum = MaxSum = 0;
+	scanf("%d",&K);
+	for(i=1,z=0;i<=K;i++){
+	  scanf("%d",&A[i]);
+	  if(A[i]<0)z++;                  //可以修改为判断正数，有一个正数就可以了	
+	}
+	if(z==K)printf("%d %d %d",z-K,A[1],A[K]);
+	else {
+	      for( i = 1; i <= K; i++ ) {
+              ThisSum += A[i];             /* 向右累加 */
+              if( ThisSum > MaxSum )
+                      {MaxSum = ThisSum; /* 发现更大和则更新当前结果 */
+                  if(head==0)           /*最大子列初始首位置*/
+            	     rear=head=i;
+        	      else rear=i;          /*末尾随着增加而改变*/
+        	      
+        	      if(t){               /*如果新子列为目前最大子列，t取代原有首位置*/
+      	        	head=t;
+      	        	t=0;
+      	           }
+              }
+			  else if( ThisSum < 0 ) /* 如果当前子列和为负 */
+                      {ThisSum = 0; /* 则不可能使后面的部分和增大，抛弃之 */
+                        if(MaxSum>0)    /*前面已存在一个目前最大子列*/
+						 t=i+1;        /*t表示新子列首位置*/
+					  }
+        }
+		 printf("%d",MaxSum );
+	     printf(" %d %d",A[head],A[rear]); 
+	}
+	 
+	return 0;
+}
+
+
+
