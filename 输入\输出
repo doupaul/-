@@ -1,0 +1,17 @@
+#include <iostream>     //标准c++输入输出头文件，不同于c需要“.h”
+
+using namespace std;     //使用标准命名空间std，防止重名问题。而且std包含了C++标准库里所有功能（标准库定义在std），不写此句，输入输出就要在开头加上“std::”
+
+cin>>变量名1>>变量名2>>...>>变量名n ; //标准输入，>>成为提取运算符，遇此语句就会暂停等待输入，输入结束条件是回车、空格、制表符,结束符会丢弃。
+cin.get(char c);      //输入的所有字符赋值给c
+cin.getline(char[] c,int i); //输入的所有字符存入c，i为字符个数
+
+cout<<表达式1<<表达式2<<...<<表达式n<<endl;  //endl是在iostream定义的一个对象，用户完成回车
+
+cout<<showpoint<<实数(float,double)<<endl;  //显示实数6位有效数字，如10，输出就是10.0000
+cout<<setiosflags(ios::fixed)<<setprecision(保留小数位数)<<实数<<endl;     //实数的小数保留，需要#include <iomanip>
+
+cout<<setw(位数)<<变量<<endl;   //控制输出占用字符宽度（位数），按右对齐左留空
+cout<<setw(位数)<<setfill('0')<<a<<endl;   //空位补0
+
+控制符
