@@ -8,10 +8,32 @@ cin.getline(char[] c,int i); //输入的所有字符存入c，i为字符个数
 
 cout<<表达式1<<表达式2<<...<<表达式n<<endl;  //endl是在iostream定义的一个对象，用户完成回车
 
-cout<<showpoint<<实数(float,double)<<endl;  //显示实数6位有效数字，如10，输出就是10.0000
+cout<<showpoint<<实数(float,double)<<endl;  //显示实数6位有效数字，如10，输出就是10.0000        cout.setf(ios::showpoint);
 cout<<setiosflags(ios::fixed)<<setprecision(保留小数位数)<<实数<<endl;     //实数的小数保留，需要#include <iomanip>
 
 cout<<setw(位数)<<变量<<endl;   //控制输出占用字符宽度（位数），按右对齐左留空
 cout<<setw(位数)<<setfill('0')<<a<<endl;   //空位补0
 
-控制符
+/*需要#include <iomanip>,输出格式控制符*/
+dec                                 设置基数为10
+hex                                 设置基数为16
+oct                                 设置基数为8
+setbase(n)                          设置基数为8，10 16
+
+setfill(c)                          设置填充字符c                            cout.fill('0');
+setprecision(n)                     设置显示浮点数精度为n 位，有效数字         cout.precision(n);不用IOMANIP头文件
+setw(n)                             设置域宽为n个字符                        cout.width(8);
+
+setiosflags(ios::fixed)             固定的浮点显示
+setiosflags(ios::scientific)        指数表示（科学计数法）
+setiosflags(ios::uppercase)         16进制字母X与科学计数法E大写输出
+setiosflags(ios::lowercase)         16进制字母X与科学计数法E小写输出（默认）
+
+setiosflags(ios::left)              左对齐                                  cout.setf(ios::left);
+setiosflags(ios::right)             右对齐
+setiosflags(ios::skipws)            忽略前导空白
+
+setiosflags(ios::showpoint)         强制显示小数点
+setiosflags(ios::showpos)           强制显示符号（正号）
+
+resetiosflags(ios::xx)              终止前面已设置的xx输出格式
