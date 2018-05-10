@@ -1,0 +1,150 @@
+/*树的递归遍历：先序，中序，后序*/
+void firstorder(Bnode *p){
+  Bnode *q;
+  q=p;
+  if(q){
+  /*所要执行的操作：打印，结点值加减某数等*/
+  fstorder(q->lchild);
+  fstorder(q->rchild);
+  }
+}
+
+void middleorder(Bnode *p){
+ Bnode *q;
+ q=p;
+ if(q){
+ middleorder(q->lchild);
+ /*所要执行的操作：打印，结点值加减某数等*/
+ middleorder(q->rchild);
+ }
+}
+
+void lastorder(Bnode *p){
+  Bnode *q;
+  q=p;
+  if(q){
+  lastorder(q->lchild);
+  lastorder(q->rchild);
+  /*所要执行的操作：打印，结点值加减某数等*/
+  }
+}
+
+/*树的非递归遍历：先序，中序，后序*/
+void firstorder(Bnode *p){
+  Bnode *q;
+  q=p;
+  int top=-1;                                 //空栈，以指针数组作为 栈 的存储
+  Bnode *s[MAXSIZE];
+  while(q||top!=-1){
+    while(q){
+   /*所要执行的操作：打印，结点值加减某数等*/
+   top++;
+   s[top]=q;
+   q=q->lchild;
+    }
+  if(top!=-1){
+   q=s[top];
+   top--;
+   q=q->rchild;
+    }
+  }
+}
+
+void middleorder(Bnode *p){
+  Bnode *q;
+  q=p;
+  int top=-1;
+  Bnode *s[MAXSIZE];
+  while(q||top!=-1){
+    while(q){
+    top++;
+    s[top]=q;
+    q=q->lchild;
+    }
+    if(top!=-1){
+    q=s[top];
+    /*所要执行的操作：打印，结点值加减某数等*/
+    top--;
+    q=q->rchlid;
+    }
+  }
+}
+
+void lastorder(Bnode *p){
+  Bnode *q;
+  q=p;
+  int top=-1,flag=1,sum[MAXSIZE];
+  Bnode *s[MAXSIZE];
+  do{
+    while(q){
+    top++;
+    s[top]=q;
+    sum[top]=1;
+    q=q->lchild;
+    }
+    
+    if(top==-1)
+       flag=0;
+    else{
+      if(sum[top]==1){
+        sum[top]=2;
+        q=s[top];
+        q=q->rchild;
+      }
+      else{
+      q=s[top];
+      sum[top]=0;
+      top--;
+      /*所要执行的操作：打印，结点值加减某数等*/
+      q=NULL;
+      }
+    }
+  }while(flag==1);
+}
+
+/*层序遍历*/
+void levelorder(Bnode* p){
+  Bnode *q;
+  q=p;
+  Bnode *s[MAXSIZE];
+  int front=0,rear=0;       //以指针数组作为 队列 的存储
+  
+  if(q){                    //初始化+判断是否为空
+  rear++;
+  s[rear]=q;
+  }
+  
+  while(front!=rear){
+  front++;
+  q=s[front];
+  /*所要执行的操作：打印，结点值加减某数等*/
+  
+  if(q->lchild){
+   rear++;
+   s[rear]=p->lchild;
+   }
+  if(q->rchild){
+   rear++;
+   s[rear]=p->rchild;
+   }
+  }
+}
+
+/*遍历的应用*/
+1.所要执行的操作：打印，结点值加减某数等
+2.先序增加条件:if(!q->lchild&&!q->rchild) 找到叶子结点
+3.后序变式 求树的高度（树深）
+  int lastorder(Bnode *p){
+  Bnode *q;
+  q=p;
+  int Hl,Hr,MAXH;
+  if(q){
+  Hl=lastorder(q->lchild);
+  Hr=lastorder(q->rchild);
+  MAXH= (Hl>Hr)?Hl:Hr;
+  return (MAXH+1);
+   }
+  else return 0;
+  }
+4.由两种遍历确定二叉树，必须包括中序遍历
+  先序和中序：根据先序的第一个结点确定根结点；根据根结点在中序的位置分割左右两个子序列；对左子树和右子树分别递归使用相同的方法继续分解。
